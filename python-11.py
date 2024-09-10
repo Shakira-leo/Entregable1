@@ -85,3 +85,15 @@ if ventas is not None and usuarios is not None:
 
     print("\nDatos de Usuarios:")
     print(usuarios.head())  # Mostrar solo las primeras filas para evitar mucha salida
+
+    # Funciones de análisis
+    def calcular_ingresos_totales(ventas):
+        # Verificar que las columnas necesarias existan
+        if 'Cantidad Vendida' in ventas.columns and 'Precio Unitario' in ventas.columns:
+            ventas['Ingreso Total'] = ventas['Cantidad Vendida'] * ventas['Precio Unitario']
+            ingresos_totales = ventas.groupby('Producto')['Ingreso Total'].sum()
+            return ingresos_totales
+        else:
+            print("Error: Las columnas 'Cantidad Vendida' y 'Precio Unitario' no se encontraron en el archivo de ventas.")
+            print("Columnas disponibles en ventas:", ventas.columns.tolist())
+            return None
