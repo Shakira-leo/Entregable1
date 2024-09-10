@@ -51,3 +51,23 @@ df_updated = pd.DataFrame(data_updated)
 df_updated.to_csv('C:/Users/HP/Documents/mi_tienda/ventas_actualizadas.csv', index=False, encoding='utf-8', sep=',')
 
 print("El archivo 'ventas_actualizadas.csv' ha sido creado y guardado correctamente.")
+
+# Función para cargar archivos CSV de forma segura
+def cargar_datos_csv(nombre_archivo):
+    try:
+        # Asegurarse de leer el archivo con el delimitador correcto
+        datos = pd.read_csv(nombre_archivo, sep=',')
+        print(f"Datos cargados correctamente desde {nombre_archivo}.")
+        return datos
+    except FileNotFoundError:
+        print(f"Error: El archivo {nombre_archivo} no se encontró. Asegúrate de que esté en el directorio correcto.")
+        return None
+    except pd.errors.EmptyDataError:
+        print(f"Error: El archivo {nombre_archivo} está vacío.")
+        return None
+    except pd.errors.ParserError as e:
+        print(f"Error de parsing en {nombre_archivo}: {e}")
+        return None
+    except Exception as e:
+        print(f"Error inesperado al cargar {nombre_archivo}: {e}")
+        return None
