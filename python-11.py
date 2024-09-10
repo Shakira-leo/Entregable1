@@ -190,3 +190,24 @@ if ventas is not None and usuarios is not None:
             x = torch.relu(self.fc1(x))
             x = self.fc2(x)
             return x
+        
+        
+    # Crear datos ficticios para la predicción con PyTorch
+    X_torch = torch.tensor(X_train.values, dtype=torch.float32)
+    y_torch = torch.tensor(y_train.values, dtype=torch.float32).view(-1, 1)
+
+    # Inicializar la red y el optimizador
+    model = SimpleNN()
+    optimizer = optim.Adam(model.parameters(), lr=0.01)
+    criterion = nn.BCEWithLogitsLoss()
+
+    # Entrenar la red con PyTorch
+    for epoch in range(100):
+        model.train()
+        optimizer.zero_grad()
+        outputs = model(X_torch)
+        loss = criterion(outputs, y_torch)
+        loss.backward()
+        optimizer.step()
+
+    print("Entrenamiento completado con PyTorch.")
