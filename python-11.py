@@ -71,3 +71,7 @@ def cargar_datos_csv(nombre_archivo):
     except Exception as e:
         print(f"Error inesperado al cargar {nombre_archivo}: {e}")
         return None
+    
+    # Leer archivos CSV
+ventas = cargar_datos_csv('C:/Users/HP/Documents/mi_tienda/ventas_actualizadas.csv')
+usuarios = cargar_datos_csv('C:/Users/HP/Documents/mi_tienda/usuarios.csv')
