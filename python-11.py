@@ -121,3 +121,19 @@ if ventas is not None and usuarios is not None:
     if usuarios_analisis is not None:
         print("\nTiempo desde la Última Compra:")
         print(usuarios_analisis)
+
+         # Visualización de la tendencia de ventas mensuales
+    def mostrar_grafico_ventas_mensuales(ventas):
+        ventas['Fecha de Venta'] = pd.to_datetime(ventas['Fecha de Venta'])
+        ventas['Mes'] = ventas['Fecha de Venta'].dt.to_period('M')
+        ventas_mensuales = ventas.groupby('Mes')['Total Venta'].sum()
+
+        plt.figure(figsize=(12, 6))
+        plt.plot(ventas_mensuales.index.astype(str), ventas_mensuales.values, marker='o', linestyle='-')
+        plt.title('Tendencia de Ventas Mensuales')
+        plt.xlabel('Mes')
+        plt.ylabel('Total de Ventas')
+        plt.xticks(rotation=45)
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
