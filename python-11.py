@@ -42,3 +42,7 @@ data_updated = {
         75.0, 75.50, 35.0, 45.0, 15.0
     ]
 }
+
+# Calcular el total de ventas y crear el DataFrame
+data_updated['Total Venta'] = np.multiply(data_updated['Cantidad Vendida'], data_updated['Precio Unitario'])
+df_updated = pd.DataFrame(data_updated)
