@@ -110,3 +110,14 @@ if ventas is not None and usuarios is not None:
             print("Error: Las columnas 'ultima_compra' y 'fecha_registro' no se encontraron en el archivo de usuarios.")
             print("Columnas disponibles en usuarios:", usuarios.columns.tolist())
             return None
+        
+        # Ejecutar funciones de análisis
+    ingresos = calcular_ingresos_totales(ventas)
+    if ingresos is not None:
+        print("\nIngresos Totales por Producto:")
+        print(ingresos)
+
+    usuarios_analisis = tiempo_desde_ultima_compra(usuarios)
+    if usuarios_analisis is not None:
+        print("\nTiempo desde la Última Compra:")
+        print(usuarios_analisis)
