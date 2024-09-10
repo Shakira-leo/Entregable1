@@ -211,3 +211,24 @@ if ventas is not None and usuarios is not None:
         optimizer.step()
 
     print("Entrenamiento completado con PyTorch.")
+
+    # Ejemplo de red neuronal profunda con TensorFlow y Keras
+    def red_neuronal_keras(X_train, y_train):
+        model = Sequential()
+        model.add(Dense(64, input_dim=3, activation='relu'))  # Capa de entrada con 3 características
+        model.add(Dense(32, activation='relu'))
+        model.add(Dense(1, activation='sigmoid'))  # Capa de salida para clasificación binaria
+
+        # Compilar el modelo
+        model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+        # Entrenar el modelo
+        model.fit(X_train, y_train, epochs=10, batch_size=10, validation_split=0.2)
+        print("Entrenamiento completado con TensorFlow y Keras.")
+
+    # Llamar a la función de red neuronal profunda con Keras
+    red_neuronal_keras(X_train, y_train)
+
+else:
+    print("Error: No se pudieron cargar los datos necesarios para ejecutar el análisis.")
+
