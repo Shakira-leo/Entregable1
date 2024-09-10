@@ -162,3 +162,31 @@ if ventas is not None and usuarios is not None:
         print(f"Exactitud del modelo de clasificación: {accuracy:.2f}")
 
         return X_train, X_test, y_train, y_test
+    
+    # Ejemplo de clustering con Scikit-Learn
+    def clustering_scikit(ventas):
+        scaler = StandardScaler()
+        ventas_scaled = scaler.fit_transform(ventas[['Cantidad Vendida', 'Precio Unitario']])
+
+        # Aplicar KMeans
+        kmeans = KMeans(n_clusters=3)
+        kmeans.fit(ventas_scaled)
+        ventas['Cluster'] = kmeans.predict(ventas_scaled)
+        print("\nAgrupamiento de productos:")
+        print(ventas[['Producto', 'Cluster']])
+
+    # Ejecutar funciones de clasificación y clustering
+    X_train, X_test, y_train, y_test = clasificacion_scikit(ventas)
+    clustering_scikit(ventas)
+
+    # Ejemplo de red neuronal con PyTorch
+    class SimpleNN(nn.Module):
+        def __init__(self):
+            super(SimpleNN, self).__init__()
+            self.fc1 = nn.Linear(3, 5)  # Entrada con 3 características, salida con 5 neuronas
+            self.fc2 = nn.Linear(5, 1)  # Capa de salida con 1 neurona
+
+        def forward(self, x):
+            x = torch.relu(self.fc1(x))
+            x = self.fc2(x)
+            return x
