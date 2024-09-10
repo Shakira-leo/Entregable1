@@ -97,3 +97,16 @@ if ventas is not None and usuarios is not None:
             print("Error: Las columnas 'Cantidad Vendida' y 'Precio Unitario' no se encontraron en el archivo de ventas.")
             print("Columnas disponibles en ventas:", ventas.columns.tolist())
             return None
+        
+        
+    def tiempo_desde_ultima_compra(usuarios):
+        # Verificar que las columnas necesarias existan
+        if 'ultima_compra' in usuarios.columns and 'fecha_registro' in usuarios.columns:
+            usuarios['ultima_compra'] = pd.to_datetime(usuarios['ultima_compra'], errors='coerce')
+            usuarios['fecha_registro'] = pd.to_datetime(usuarios['fecha_registro'], errors='coerce')
+            usuarios['dias_desde_ultima_compra'] = (pd.Timestamp.now() - usuarios['ultima_compra']).dt.days
+            return usuarios[['usuario_id', 'nombre', 'dias_desde_ultima_compra']]
+        else:
+            print("Error: Las columnas 'ultima_compra' y 'fecha_registro' no se encontraron en el archivo de usuarios.")
+            print("Columnas disponibles en usuarios:", usuarios.columns.tolist())
+            return None
