@@ -46,3 +46,6 @@ data_updated = {
 # Calcular el total de ventas y crear el DataFrame
 data_updated['Total Venta'] = np.multiply(data_updated['Cantidad Vendida'], data_updated['Precio Unitario'])
 df_updated = pd.DataFrame(data_updated)
+
+# Guardar el DataFrame en un archivo CSV asegurando la correcta codificación y delimitador
+df_updated.to_csv('C:/Users/HP/Documents/mi_tienda/ventas_actualizadas.csv', index=False, encoding='utf-8', sep=',')
