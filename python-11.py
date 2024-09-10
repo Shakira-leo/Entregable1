@@ -75,3 +75,13 @@ def cargar_datos_csv(nombre_archivo):
     # Leer archivos CSV
 ventas = cargar_datos_csv('C:/Users/HP/Documents/mi_tienda/ventas_actualizadas.csv')
 usuarios = cargar_datos_csv('C:/Users/HP/Documents/mi_tienda/usuarios.csv')
+
+# Verificar que los datos se hayan cargado correctamente antes de continuar
+if ventas is not None and usuarios is not None:
+    
+    # Mostrar los datos cargados
+    print("\nDatos de Ventas:")
+    print(ventas.head())  # Mostrar solo las primeras filas para evitar mucha salida
+
+    print("\nDatos de Usuarios:")
+    print(usuarios.head())  # Mostrar solo las primeras filas para evitar mucha salida
