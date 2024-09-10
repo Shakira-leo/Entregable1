@@ -137,3 +137,28 @@ if ventas is not None and usuarios is not None:
         plt.grid(True)
         plt.tight_layout()
         plt.show()
+
+        
+    # Llamar a la función para mostrar el gráfico
+    mostrar_grafico_ventas_mensuales(ventas)
+
+    # Implementación de modelos de Machine Learning y Deep Learning
+
+    # Ejemplo de clasificación con Scikit-Learn
+    def clasificacion_scikit(ventas):
+        ventas['Categoria_Cod'] = ventas['Producto'].factorize()[0]  # Convertir productos en categorías numéricas
+        X = ventas[['Cantidad Vendida', 'Precio Unitario', 'Categoria_Cod']]
+        y = ventas['Cantidad Vendida'] > 100  # Etiqueta: Compras mayores a 100 unidades
+
+        # Dividir los datos en entrenamiento y prueba
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+        # Crear un modelo de clasificación
+        model = RandomForestClassifier()
+        model.fit(X_train, y_train)
+
+        # Evaluar el modelo
+        accuracy = model.score(X_test, y_test)
+        print(f"Exactitud del modelo de clasificación: {accuracy:.2f}")
+
+        return X_train, X_test, y_train, y_test
